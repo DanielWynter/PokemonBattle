@@ -3,6 +3,8 @@ package com.example.demo.services;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.google.cloud.firestore.Firestore;
@@ -10,6 +12,8 @@ import com.google.firebase.cloud.FirestoreClient;
 
 @Service
 public class FirebaseService {
+
+    private static final Logger logger = LoggerFactory.getLogger(FirebaseService.class);
 
     public String guardarDato() {
 
@@ -31,7 +35,7 @@ public class FirebaseService {
             return "Datos guardados correctamente";
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error al guardar datos en Firestore", e);
             return "Error al guardar datos";
         }
     }
